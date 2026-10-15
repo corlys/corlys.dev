@@ -1,0 +1,41 @@
+[
+  {
+    "name": "auto2000",
+    "type": "frontend",
+    "modules": [
+      {
+        "title": "Geolocation-Aware Trending Carousel",
+        "subHeading": "Delivering a personalized car shopping experience through data-driven UI.",
+        "description": "A smart car discovery carousel that adapts to the user's physical location.",
+        "image": "/assets/images/auto2000/auto2000_1.webp",
+        "keyFeatures": [
+          "Integrated with a Geolocation API to display trending Toyota models specific to the user’s current city.",
+          "Features a custom 'Focus-Scale' effect where active items enlarge dynamically as they reach the middle position using Splide.js.",
+          "Real-time price and technical specification updates based on the active selection."
+        ]
+      },
+      {
+        "title": "Optimized Test Drive Lead Generation",
+        "subHeading": "Converting interest into action with a streamlined booking interface.",
+        "description": "A conversion-focused form designed to capture user information for test drive scheduling.",
+        "image": "/assets/images/auto2000/auto2000_2.webp",
+        "keyFeatures": [
+          "Intelligent alert system that notifies users if a specific model is available for test drive in their area.",
+          "A clean, multi-step inquiry form capturing full name, contact details, and purchase timelines.",
+          "Fully responsive design built with Tailwind CSS to ensure brand consistency across all devices."
+        ]
+      },
+      {
+        "title": "API-Driven Dynamic Form Architecture",
+        "subHeading": "A scalable solution for complex, ever-changing data requirements.",
+        "description": "A highly flexible form engine that renders UI components based on dynamic backend values.",
+        "image": "/assets/images/auto2000/auto2000_3.webp",
+        "keyFeatures": [
+          "Developed a dynamic rendering engine in Next.js that builds the UI based on JSON schema returned from the API.",
+          "Manages complex dependencies, such as cascading filters for Province, City, and Sales ID in real-time.",
+          "Allows for instant form updates (adding/removing fields like Tenor or Branch) without requiring new code deployments."
+        ]
+      }
+    ]
+  }
+]

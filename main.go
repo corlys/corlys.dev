@@ -8,6 +8,7 @@ import (
 	"io/fs"
 	"log"
 	"net/http"
+	"strings"
 )
 
 //go:embed templates data assets
@@ -20,13 +21,14 @@ type card struct {
 }
 
 var (
-	pages    = load()
-	projects = loadProjects()
+	pages          = load()
+	projects       = loadProjects()
+	projectDetails = loadProjectDetails()
 )
 
 func load() map[string]*template.Template {
 	pages := map[string]*template.Template{}
-	for _, p := range []string{"home", "project", "projects"} {
+	for _, p := range []string{"home", "project", "projects", "notfound"} {
 		pages[p] = template.Must(template.ParseFS(files, "templates/layout.html", "templates/"+p+".html"))
 	}
 	return pages
@@ -38,6 +40,18 @@ func loadProjects() []model.Project {
 		log.Fatal(err)
 	}
 	var ps []model.Project
+	if err := json.Unmarshal(b, &ps); err != nil {
+		log.Fatal(err)
+	}
+	return ps
+}
+
+func loadProjectDetails() []model.Detail {
+	b, err := files.ReadFile("data/project-details.json")
+	if err != nil {
+		log.Fatal(err)
+	}
+	var ps []model.Detail
 	if err := json.Unmarshal(b, &ps); err != nil {
 		log.Fatal(err)
 	}
@@ -80,7 +94,22 @@ func categoryHandler(category, heading, accent string) http.HandlerFunc {
 }
 
 func projectHandler(w http.ResponseWriter, r *http.Request) {
-
+	id := r.PathValue("id")
+	for _, d := range projectDetails {
+		if d.Name == id {
+			data := map[string]any{
+				"Heading":   d.Name,
+				"Back":      strings.ToLower("/" + d.Type),
+				"BackLabel": "Back",
+				"Modules":   d.Modules,
+			}
+			render(w, "project", data)
+			return
+		}
+	}
+	w.WriteHeader(http.StatusNotFound)
+	render(w, "notfound", nil)
+	return
 }
 
 func main() {
@@ -92,7 +121,7 @@ func main() {
 	mux.Handle("GET /assets/", http.StripPrefix("/assets/", http.FileServerFS(assets)))
 	mux.HandleFunc("GET /frontend", categoryHandler("frontend", "Frontend Projects", "green"))
 	mux.HandleFunc("GET /backend", categoryHandler("backend", "Backend Projects", "blue"))
-	mux.HandleFunc("GET /{category}/{id}", projectHandler)
+	mux.HandleFunc("GET /projects/{id}", projectHandler)
 
 	log.Fatal(http.ListenAndServe(":8888", mux))
 }
