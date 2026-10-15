@@ -1,0 +1,78 @@
+[
+  {
+    "id": "corlys-compendium",
+    "title": "Corlys Compendium",
+    "category": "frontend",
+    "summary": "Blog app with built-in SIWE (Sign in With Ethereum) functionality.",
+    "description": [
+      "Blog app with built in SIWE (Sign in With Ethereum) functionality.",
+      "Built using Next and Tailwind, authenticated using SIWE + Firebase."
+    ],
+    "stack": ["Next.js", "Tailwind CSS", "SIWE", "Firebase"],
+    "role": "",
+    "year": 0,
+    "repo": "",
+    "demo": "https://corlys-compendium.vercel.app/"
+  },
+  {
+    "id": "adhan-app",
+    "title": "Adhan App",
+    "category": "frontend",
+    "summary": "Classic side project for a muslim.",
+    "description": [
+      "Classic side project for a muslim.",
+      "Built using Next and Tailwind."
+    ],
+    "stack": ["Next.js", "Tailwind CSS"],
+    "role": "",
+    "year": 0,
+    "repo": "",
+    "demo": "https://adhan-app-gamma.vercel.app/"
+  },
+  {
+    "id": "blog-md",
+    "title": "Blog MD",
+    "category": "frontend",
+    "summary": "Blog app that reads markdown to be used as content.",
+    "description": [
+      "Blog app that reads markdown to be used as content.",
+      "Fully SSR website that uses Golang templ as the templater and Golang Gin as the server."
+    ],
+    "stack": ["Golang", "Gin", "templ"],
+    "role": "",
+    "year": 0,
+    "repo": "",
+    "demo": "https://blog-md.up.railway.app"
+  },
+  {
+    "id": "auto2000",
+    "title": "Auto2000",
+    "category": "frontend",
+    "summary": "E-commerce for cars, mainly Toyota. Built using NextJS and Tailwind, with SSR for good SEO.",
+    "description": [
+      "Geolocation shows trending Toyota models for the user's current city, with a Splide.js 'Focus-Scale' effect for updates.",
+      "Optimized test drive lead generation: availability alerts per area, fully responsive with Tailwind CSS.",
+      "API-driven: renders UI from a JSON schema returned by the API, cascading Province/City/Sales ID filters, form."
+    ],
+    "stack": ["Next.js", "Tailwind CSS", "Splide.js"],
+    "role": "",
+    "year": 0,
+    "repo": "",
+    "demo": "/projects/auto2000",
+    "image": "/assets/images/auto2000/auto2000_logo.png"
+  },
+  {
+    "id": "blockchain-indexer",
+    "title": "Blockchain Indexer",
+    "category": "backend",
+    "summary": "Blockchain indexer built using TypeScript and Subsquid SDK.",
+    "description": [
+      "Blockchain indexer built using TypeScript and Subsquid SDK."
+    ],
+    "stack": ["TypeScript", "Subsquid SDK"],
+    "role": "",
+    "year": 0,
+    "repo": "",
+    "demo": ""
+  }
+]

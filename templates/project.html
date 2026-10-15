@@ -1,0 +1,45 @@
+{{/* data: {Name, Back, BackLabel string, Modules []{Image, Title, SubHeading, Description string, KeyFeatures []string}} */}}
+{{define "content"}}
+<section class="py-8 px-4">
+  {{template "blobs" "blue"}}
+  {{template "back" .}}
+  <div class="flex flex-col items-center justify-center md:mt-6">
+    <h1 class="text-3xl font-bold md:mb-6">{{.Name}}</h1>
+    <p class="md:hidden text-xs mb-6 md:mb-0">slide to browse</p>
+
+    <!-- ponytail: CSS scroll-snap replaces embla; JS only for prev/next buttons -->
+    <div class="relative w-full max-w-xs md:max-w-2xl" role="region" aria-roledescription="carousel">
+      <div data-track class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] -ml-4">
+        {{range .Modules}}
+        <div class="min-w-0 shrink-0 grow-0 basis-full pl-4 snap-start" role="group" aria-roledescription="slide">
+          <div class="rounded-xl border bg-card text-card-foreground shadow">
+            <div class="flex flex-col space-y-1.5 p-6">
+              <h2 class="text-md md:text-xl font-semibold text-right">{{.Title}}</h2>
+              <p class="text-sm md:text-lg">{{.SubHeading}}</p>
+            </div>
+            <div class="p-6 pt-0">
+              <p class="text-sm text-muted-foreground">{{.Description}}</p>
+              <img class="hidden md:block mt-2" src="{{.Image}}" width="600" height="600" alt="{{.Title}}" loading="lazy">
+              <ul class="flex flex-col gap-1 mt-2">
+                {{range .KeyFeatures}}
+                <li class="flex flex-wrap items-center rounded-md border border-border text-sm gap-2.5 px-4 py-3">
+                  <div class="flex flex-1 flex-col gap-1">{{.}}</div>
+                </li>
+                {{end}}
+              </ul>
+            </div>
+          </div>
+        </div>
+        {{end}}
+      </div>
+      <button data-dir="-1" class="hidden md:inline-flex absolute -left-12 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full items-center justify-center border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground" aria-label="Previous slide">&larr;</button>
+      <button data-dir="1" class="hidden md:inline-flex absolute -right-12 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full items-center justify-center border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground" aria-label="Next slide">&rarr;</button>
+    </div>
+  </div>
+</section>
+<script>
+  const track = document.querySelector("[data-track]");
+  document.querySelectorAll("[data-dir]").forEach(b =>
+    b.addEventListener("click", () => track.scrollBy({ left: b.dataset.dir * track.clientWidth })));
+</script>
+{{end}}

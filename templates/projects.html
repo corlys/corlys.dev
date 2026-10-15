@@ -1,0 +1,28 @@
+{{/* data: {Heading, Back, BackLabel string, Accent "green"|"blue", Projects []{Title, Description, Link, Image string, Internal bool}} */}}
+{{define "content"}}
+<div class="py-8 px-4 w-full">
+  {{template "blobs" .Accent}}
+  {{template "back" .}}
+  <div class="flex flex-col items-center justify-center">
+    <h1 class="text-3xl font-bold mb-6">{{.Heading}}</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:mt-6">
+      {{range .Projects}}
+      <div class="rounded-xl border bg-card text-card-foreground shadow w-full md:w-[350px] flex flex-col z-10 relative">
+        <div class="flex flex-col space-y-1.5 p-6">
+          <h3 class="font-semibold leading-none tracking-tight">{{.Title}}</h3>
+        </div>
+        <div class="p-6 pt-0 flex-grow">
+          <p class="text-sm text-muted-foreground">{{.Description}}</p>
+        </div>
+        {{if .Link}}
+        <div class="flex items-center p-6 pt-0">
+          <a href="{{.Link}}" {{if not .Internal}}target="_blank" rel="noopener"{{end}} class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring h-9 px-4 py-2 bg-primary text-primary-foreground shadow hover:bg-primary/90">View Project</a>
+        </div>
+        {{end}}
+        {{if .Image}}<img class="absolute opacity-50 right-[-10px] bottom-4" src="{{.Image}}" alt="" width="200" height="200" loading="lazy">{{end}}
+      </div>
+      {{end}}
+    </div>
+  </div>
+</div>
+{{end}}
