@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
   <!-- ponytail: browser build, dev only; switch to standalone CLI output inlined in <style> for prod -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <style type="text/tailwindcss">
@@ -49,11 +50,11 @@
     @utility animation-delay-4000 { animation-delay: 4s; }
   </style>
   <!-- ponytail: replaces next-themes (system theme only, no toggle existed) -->
-  <script>
-    const mq = matchMedia("(prefers-color-scheme: dark)");
-    const sync = () => document.documentElement.classList.toggle("dark", mq.matches);
-    sync(); mq.addEventListener("change", sync);
-  </script>
+  <!-- <script> -->
+  <!--   const mq = matchMedia("(prefers-color-scheme: dark)"); -->
+  <!--   const sync = () => document.documentElement.classList.toggle("dark", mq.matches); -->
+  <!--   sync(); mq.addEventListener("change", sync); -->
+  <!-- </script> -->
 </head>
 <body class="font-['Albert_Sans'] antialiased bg-background text-foreground">
   {{template "content" .}}
